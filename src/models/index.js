@@ -48,6 +48,20 @@ const Articles = sequelize.define("article", {
   body: Sequelize.STRING,
 });
 
+const Comments = sequelize.define("comment", {
+  body: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+
+const Tags = sequelize.define("tag", {
+  name: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
+});
+
 module.exports = {
   sequelize,
   Users,
