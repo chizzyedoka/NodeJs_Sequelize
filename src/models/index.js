@@ -32,6 +32,22 @@ const Users = sequelize.define("user", {
     },
   },
 });
+
+const Articles = sequelize.define("article", {
+  slug: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
+  title: {
+    type: Sequelize.STRING(50),
+    allowNull: false,
+  },
+  description: {
+    type: Sequelize.STRING(100),
+  },
+  body: Sequelize.STRING,
+});
+
 module.exports = {
   sequelize,
   Users,
