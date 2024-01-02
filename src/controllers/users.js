@@ -1,6 +1,6 @@
 const { Users } = require("../models/index");
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   // check body of request has required parameters
   if (!req.body.username) {
     return res.status(400).json({
@@ -17,5 +17,12 @@ const createUser = async (req, res, next) => {
       error: "email is required but not provided",
     });
   }
-  next();
+  const user = await Users.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  if (!user) throw new Error("Could not create user");
+  res.send(user);
 };
+module.exports = { createUser };
